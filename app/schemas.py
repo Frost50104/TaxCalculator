@@ -9,7 +9,8 @@ class CalcForm(BaseModel):
     # Revenue and profit
     turnover_total: float = Field(..., ge=0, description="Оборот (в т.ч. агрегатор)")
     gross_profit: float = Field(..., description="Валовая прибыль (выручка - закупка)")
-    turnover_aggregator: float = Field(..., ge=0, description="Оборот агрегатор")
+    # Not required in the form: default to 0 if not provided
+    turnover_aggregator: float = Field(0, ge=0, description="Оборот агрегаторы")
 
     # Expenses
     rent: float = Field(0, ge=0)

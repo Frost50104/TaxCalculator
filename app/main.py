@@ -31,7 +31,7 @@ except ImportError:  # fallback for direct script execution
     )
 
 
-app = FastAPI(title="Калькулятор налоговой нагрузки UPPETIT")
+app = FastAPI(title="Калькулятор налоговой нагрузки")
 
 # Resolve absolute paths for static and templates to work regardless of CWD
 BASE_DIR = Path(__file__).resolve().parent
@@ -113,7 +113,7 @@ async def calculate(request: Request):
         else:
             if raw is None or str(raw).strip() == "":
                 # Missing -> use default 0 for optional fields; for required keep None
-                if key in ("turnover_total", "gross_profit", "turnover_aggregator"):
+                if key in ("turnover_total", "gross_profit"):
                     payload[key] = None
                 else:
                     payload[key] = 0

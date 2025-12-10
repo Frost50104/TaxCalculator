@@ -6,39 +6,29 @@
         <div class="grid">
             <label>
                 Оборот (в т.ч. агрегатор)
-                <input type="number" name="turnover_total" step="any" value="{{ data.get('turnover_total', '') }}" required>
+                <input type="number" name="turnover_total" step="any" value="{{ '' if data.get('turnover_total') is none else data.get('turnover_total') }}" required>
                 {% if errors.get('turnover_total') %}<div class="error">{{ errors.get('turnover_total') }}</div>{% endif %}
             </label>
             <label>
                 Валовая прибыль
-                <input type="number" name="gross_profit" step="any" value="{{ data.get('gross_profit', '') }}" required>
+                <input type="number" name="gross_profit" step="any" value="{{ '' if data.get('gross_profit') is none else data.get('gross_profit') }}" required>
                 {% if errors.get('gross_profit') %}<div class="error">{{ errors.get('gross_profit') }}</div>{% endif %}
             </label>
         </div>
     </section>
 
-    <section>
-        <h2>Агрегаторы</h2>
-        <div class="grid">
-            <label>
-                Оборот агрегатор
-                <input type="number" name="turnover_aggregator" step="any" value="{{ data.get('turnover_aggregator', '') }}" required>
-                {% if errors.get('turnover_aggregator') %}<div class="error">{{ errors.get('turnover_aggregator') }}</div>{% endif %}
-            </label>
-        </div>
-    </section>
 
     <section>
         <h2>ФОТ</h2>
         <div class="grid">
             <label>
                 ФОТ (общий)
-                <input type="number" name="payroll_total" step="any" value="{{ data.get('payroll_total', 0) }}">
+                <input type="number" name="payroll_total" step="any" value="{{ '' if data.get('payroll_total') is none else data.get('payroll_total') }}">
                 {% if errors.get('payroll_total') %}<div class="error">{{ errors.get('payroll_total') }}</div>{% endif %}
             </label>
             <label>
                 Белый ФОТ (необязательно)
-                <input type="number" name="white_payroll_override" step="any" value="{{ data.get('white_payroll_override', '') }}" placeholder="если пусто — 33% от ФОТ">
+                <input type="number" name="white_payroll_override" step="any" value="{{ '' if data.get('white_payroll_override') is none else data.get('white_payroll_override') }}" placeholder="если пусто — 33% от ФОТ">
                 {% if errors.get('white_payroll_override') %}<div class="error">{{ errors.get('white_payroll_override') }}</div>{% endif %}
             </label>
         </div>
@@ -48,95 +38,95 @@
         <h2>Постоянные расходы</h2>
         <div class="grid cols-3">
             <label>Аренда
-                <input type="number" name="rent" step="any" value="{{ data.get('rent', 0) }}">
+                <input type="number" name="rent" step="any" value="{{ '' if data.get('rent') is none else data.get('rent') }}">
                 {% if errors.get('rent') %}<div class="error">{{ errors.get('rent') }}</div>{% endif %}
             </label>
             <label>Субаренда (может быть отрицательной)
-                <input type="number" name="subrent" step="any" value="{{ data.get('subrent', 0) }}">
+                <input type="number" name="subrent" step="any" value="{{ '' if data.get('subrent') is none else data.get('subrent') }}">
                 {% if errors.get('subrent') %}<div class="error">{{ errors.get('subrent') }}</div>{% endif %}
             </label>
             <label>Электричество
-                <input type="number" name="electricity" step="any" value="{{ data.get('electricity', 0) }}">
+                <input type="number" name="electricity" step="any" value="{{ '' if data.get('electricity') is none else data.get('electricity') }}">
                 {% if errors.get('electricity') %}<div class="error">{{ errors.get('electricity') }}</div>{% endif %}
             </label>
             <label>Другие КУ
-                <input type="number" name="other_utilities" step="any" value="{{ data.get('other_utilities', 0) }}">
+                <input type="number" name="other_utilities" step="any" value="{{ '' if data.get('other_utilities') is none else data.get('other_utilities') }}">
                 {% if errors.get('other_utilities') %}<div class="error">{{ errors.get('other_utilities') }}</div>{% endif %}
             </label>
             <label>Канцелярия/упаковка
-                <input type="number" name="office_supplies" step="any" value="{{ data.get('office_supplies', 0) }}">
+                <input type="number" name="office_supplies" step="any" value="{{ '' if data.get('office_supplies') is none else data.get('office_supplies') }}">
                 {% if errors.get('office_supplies') %}<div class="error">{{ errors.get('office_supplies') }}</div>{% endif %}
             </label>
             <label>Другие закупки вне Оптиком
-                <input type="number" name="other_purchases_outside_opticom" step="any" value="{{ data.get('other_purchases_outside_opticom', 0) }}">
+                <input type="number" name="other_purchases_outside_opticom" step="any" value="{{ '' if data.get('other_purchases_outside_opticom') is none else data.get('other_purchases_outside_opticom') }}">
                 {% if errors.get('other_purchases_outside_opticom') %}<div class="error">{{ errors.get('other_purchases_outside_opticom') }}</div>{% endif %}
             </label>
             <label>Просрочка
-                <input type="number" name="write_offs" step="any" value="{{ data.get('write_offs', 0) }}">
+                <input type="number" name="write_offs" step="any" value="{{ '' if data.get('write_offs') is none else data.get('write_offs') }}">
                 {% if errors.get('write_offs') %}<div class="error">{{ errors.get('write_offs') }}</div>{% endif %}
             </label>
             <label>Компенсация питания
-                <input type="number" name="meal_compensation" step="any" value="{{ data.get('meal_compensation', 0) }}">
+                <input type="number" name="meal_compensation" step="any" value="{{ '' if data.get('meal_compensation') is none else data.get('meal_compensation') }}">
                 {% if errors.get('meal_compensation') %}<div class="error">{{ errors.get('meal_compensation') }}</div>{% endif %}
             </label>
             <label>Другие списания
-                <input type="number" name="other_write_offs" step="any" value="{{ data.get('other_write_offs', 0) }}">
+                <input type="number" name="other_write_offs" step="any" value="{{ '' if data.get('other_write_offs') is none else data.get('other_write_offs') }}">
                 {% if errors.get('other_write_offs') %}<div class="error">{{ errors.get('other_write_offs') }}</div>{% endif %}
             </label>
             <label>Охрана и пожарная охрана
-                <input type="number" name="security" step="any" value="{{ data.get('security', 0) }}">
+                <input type="number" name="security" step="any" value="{{ '' if data.get('security') is none else data.get('security') }}">
                 {% if errors.get('security') %}<div class="error">{{ errors.get('security') }}</div>{% endif %}
             </label>
             <label>Интернет
-                <input type="number" name="internet" step="any" value="{{ data.get('internet', 0) }}">
+                <input type="number" name="internet" step="any" value="{{ '' if data.get('internet') is none else data.get('internet') }}">
                 {% if errors.get('internet') %}<div class="error">{{ errors.get('internet') }}</div>{% endif %}
             </label>
             <label>ТО
-                <input type="number" name="maintenance" step="any" value="{{ data.get('maintenance', 0) }}">
+                <input type="number" name="maintenance" step="any" value="{{ '' if data.get('maintenance') is none else data.get('maintenance') }}">
                 {% if errors.get('maintenance') %}<div class="error">{{ errors.get('maintenance') }}</div>{% endif %}
             </label>
             <label>Другие ремонты
-                <input type="number" name="other_repairs" step="any" value="{{ data.get('other_repairs', 0) }}">
+                <input type="number" name="other_repairs" step="any" value="{{ '' if data.get('other_repairs') is none else data.get('other_repairs') }}">
                 {% if errors.get('other_repairs') %}<div class="error">{{ errors.get('other_repairs') }}</div>{% endif %}
             </label>
             <label>Обслуживание кассы
-                <input type="number" name="cash_service" step="any" value="{{ data.get('cash_service', 0) }}">
+                <input type="number" name="cash_service" step="any" value="{{ '' if data.get('cash_service') is none else data.get('cash_service') }}">
                 {% if errors.get('cash_service') %}<div class="error">{{ errors.get('cash_service') }}</div>{% endif %}
             </label>
             <label>Мобильная связь
-                <input type="number" name="mobile_connection" step="any" value="{{ data.get('mobile_connection', 0) }}">
+                <input type="number" name="mobile_connection" step="any" value="{{ '' if data.get('mobile_connection') is none else data.get('mobile_connection') }}">
                 {% if errors.get('mobile_connection') %}<div class="error">{{ errors.get('mobile_connection') }}</div>{% endif %}
             </label>
             <label>Банк
-                <input type="number" name="bank_services" step="any" value="{{ data.get('bank_services', 0) }}">
+                <input type="number" name="bank_services" step="any" value="{{ '' if data.get('bank_services') is none else data.get('bank_services') }}">
                 {% if errors.get('bank_services') %}<div class="error">{{ errors.get('bank_services') }}</div>{% endif %}
             </label>
             <label>Форма
-                <input type="number" name="uniform" step="any" value="{{ data.get('uniform', 0) }}">
+                <input type="number" name="uniform" step="any" value="{{ '' if data.get('uniform') is none else data.get('uniform') }}">
                 {% if errors.get('uniform') %}<div class="error">{{ errors.get('uniform') }}</div>{% endif %}
             </label>
             <label>Фискальник
-                <input type="number" name="fiscal_device" step="any" value="{{ data.get('fiscal_device', 0) }}">
+                <input type="number" name="fiscal_device" step="any" value="{{ '' if data.get('fiscal_device') is none else data.get('fiscal_device') }}">
                 {% if errors.get('fiscal_device') %}<div class="error">{{ errors.get('fiscal_device') }}</div>{% endif %}
             </label>
             <label>НЭО
-                <input type="number" name="neo_service" step="any" value="{{ data.get('neo_service', 0) }}">
+                <input type="number" name="neo_service" step="any" value="{{ '' if data.get('neo_service') is none else data.get('neo_service') }}">
                 {% if errors.get('neo_service') %}<div class="error">{{ errors.get('neo_service') }}</div>{% endif %}
             </label>
             <label>Мусор, дворник
-                <input type="number" name="garbage_cleaning" step="any" value="{{ data.get('garbage_cleaning', 0) }}">
+                <input type="number" name="garbage_cleaning" step="any" value="{{ '' if data.get('garbage_cleaning') is none else data.get('garbage_cleaning') }}">
                 {% if errors.get('garbage_cleaning') %}<div class="error">{{ errors.get('garbage_cleaning') }}</div>{% endif %}
             </label>
             <label>Дезинфекция
-                <input type="number" name="disinfection" step="any" value="{{ data.get('disinfection', 0) }}">
+                <input type="number" name="disinfection" step="any" value="{{ '' if data.get('disinfection') is none else data.get('disinfection') }}">
                 {% if errors.get('disinfection') %}<div class="error">{{ errors.get('disinfection') }}</div>{% endif %}
             </label>
             <label>Рекламные материалы
-                <input type="number" name="promo_materials" step="any" value="{{ data.get('promo_materials', 0) }}">
+                <input type="number" name="promo_materials" step="any" value="{{ '' if data.get('promo_materials') is none else data.get('promo_materials') }}">
                 {% if errors.get('promo_materials') %}<div class="error">{{ errors.get('promo_materials') }}</div>{% endif %}
             </label>
             <label>Чистый итог инвентаризации (может быть отрицательным)
-                <input type="number" name="inventory_result" step="any" value="{{ data.get('inventory_result', 0) }}">
+                <input type="number" name="inventory_result" step="any" value="{{ '' if data.get('inventory_result') is none else data.get('inventory_result') }}">
                 {% if errors.get('inventory_result') %}<div class="error">{{ errors.get('inventory_result') }}</div>{% endif %}
             </label>
         </div>
@@ -156,7 +146,6 @@
             <ul>
                 <li>Оборот: <strong>{{ results.inputs.turnover_total | money }}</strong></li>
                 <li>Валовая прибыль: <strong>{{ results.inputs.gross_profit | money }}</strong></li>
-                <li>Оборот агрегатор: <strong>{{ results.inputs.turnover_aggregator | money }}</strong></li>
             </ul>
         </div>
         <div>
