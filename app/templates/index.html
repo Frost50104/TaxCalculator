@@ -1,0 +1,205 @@
+{% extends 'base.html' %}
+{% block content %}
+<form method="post" class="form">
+    <section>
+        <h2>Выручка и валовая прибыль</h2>
+        <div class="grid">
+            <label>
+                Оборот (в т.ч. агрегатор)
+                <input type="number" name="turnover_total" step="any" value="{{ data.get('turnover_total', '') }}" required>
+                {% if errors.get('turnover_total') %}<div class="error">{{ errors.get('turnover_total') }}</div>{% endif %}
+            </label>
+            <label>
+                Валовая прибыль
+                <input type="number" name="gross_profit" step="any" value="{{ data.get('gross_profit', '') }}" required>
+                {% if errors.get('gross_profit') %}<div class="error">{{ errors.get('gross_profit') }}</div>{% endif %}
+            </label>
+        </div>
+    </section>
+
+    <section>
+        <h2>Агрегаторы</h2>
+        <div class="grid">
+            <label>
+                Оборот агрегатор
+                <input type="number" name="turnover_aggregator" step="any" value="{{ data.get('turnover_aggregator', '') }}" required>
+                {% if errors.get('turnover_aggregator') %}<div class="error">{{ errors.get('turnover_aggregator') }}</div>{% endif %}
+            </label>
+        </div>
+    </section>
+
+    <section>
+        <h2>ФОТ</h2>
+        <div class="grid">
+            <label>
+                ФОТ (общий)
+                <input type="number" name="payroll_total" step="any" value="{{ data.get('payroll_total', 0) }}">
+                {% if errors.get('payroll_total') %}<div class="error">{{ errors.get('payroll_total') }}</div>{% endif %}
+            </label>
+            <label>
+                Белый ФОТ (необязательно)
+                <input type="number" name="white_payroll_override" step="any" value="{{ data.get('white_payroll_override', '') }}" placeholder="если пусто — 33% от ФОТ">
+                {% if errors.get('white_payroll_override') %}<div class="error">{{ errors.get('white_payroll_override') }}</div>{% endif %}
+            </label>
+        </div>
+    </section>
+
+    <section>
+        <h2>Постоянные расходы</h2>
+        <div class="grid cols-3">
+            <label>Аренда
+                <input type="number" name="rent" step="any" value="{{ data.get('rent', 0) }}">
+                {% if errors.get('rent') %}<div class="error">{{ errors.get('rent') }}</div>{% endif %}
+            </label>
+            <label>Субаренда (может быть отрицательной)
+                <input type="number" name="subrent" step="any" value="{{ data.get('subrent', 0) }}">
+                {% if errors.get('subrent') %}<div class="error">{{ errors.get('subrent') }}</div>{% endif %}
+            </label>
+            <label>Электричество
+                <input type="number" name="electricity" step="any" value="{{ data.get('electricity', 0) }}">
+                {% if errors.get('electricity') %}<div class="error">{{ errors.get('electricity') }}</div>{% endif %}
+            </label>
+            <label>Другие КУ
+                <input type="number" name="other_utilities" step="any" value="{{ data.get('other_utilities', 0) }}">
+                {% if errors.get('other_utilities') %}<div class="error">{{ errors.get('other_utilities') }}</div>{% endif %}
+            </label>
+            <label>Канцелярия/упаковка
+                <input type="number" name="office_supplies" step="any" value="{{ data.get('office_supplies', 0) }}">
+                {% if errors.get('office_supplies') %}<div class="error">{{ errors.get('office_supplies') }}</div>{% endif %}
+            </label>
+            <label>Другие закупки вне Оптиком
+                <input type="number" name="other_purchases_outside_opticom" step="any" value="{{ data.get('other_purchases_outside_opticom', 0) }}">
+                {% if errors.get('other_purchases_outside_opticom') %}<div class="error">{{ errors.get('other_purchases_outside_opticom') }}</div>{% endif %}
+            </label>
+            <label>Просрочка
+                <input type="number" name="write_offs" step="any" value="{{ data.get('write_offs', 0) }}">
+                {% if errors.get('write_offs') %}<div class="error">{{ errors.get('write_offs') }}</div>{% endif %}
+            </label>
+            <label>Компенсация питания
+                <input type="number" name="meal_compensation" step="any" value="{{ data.get('meal_compensation', 0) }}">
+                {% if errors.get('meal_compensation') %}<div class="error">{{ errors.get('meal_compensation') }}</div>{% endif %}
+            </label>
+            <label>Другие списания
+                <input type="number" name="other_write_offs" step="any" value="{{ data.get('other_write_offs', 0) }}">
+                {% if errors.get('other_write_offs') %}<div class="error">{{ errors.get('other_write_offs') }}</div>{% endif %}
+            </label>
+            <label>Охрана и пожарная охрана
+                <input type="number" name="security" step="any" value="{{ data.get('security', 0) }}">
+                {% if errors.get('security') %}<div class="error">{{ errors.get('security') }}</div>{% endif %}
+            </label>
+            <label>Интернет
+                <input type="number" name="internet" step="any" value="{{ data.get('internet', 0) }}">
+                {% if errors.get('internet') %}<div class="error">{{ errors.get('internet') }}</div>{% endif %}
+            </label>
+            <label>ТО
+                <input type="number" name="maintenance" step="any" value="{{ data.get('maintenance', 0) }}">
+                {% if errors.get('maintenance') %}<div class="error">{{ errors.get('maintenance') }}</div>{% endif %}
+            </label>
+            <label>Другие ремонты
+                <input type="number" name="other_repairs" step="any" value="{{ data.get('other_repairs', 0) }}">
+                {% if errors.get('other_repairs') %}<div class="error">{{ errors.get('other_repairs') }}</div>{% endif %}
+            </label>
+            <label>Обслуживание кассы
+                <input type="number" name="cash_service" step="any" value="{{ data.get('cash_service', 0) }}">
+                {% if errors.get('cash_service') %}<div class="error">{{ errors.get('cash_service') }}</div>{% endif %}
+            </label>
+            <label>Мобильная связь
+                <input type="number" name="mobile_connection" step="any" value="{{ data.get('mobile_connection', 0) }}">
+                {% if errors.get('mobile_connection') %}<div class="error">{{ errors.get('mobile_connection') }}</div>{% endif %}
+            </label>
+            <label>Банк
+                <input type="number" name="bank_services" step="any" value="{{ data.get('bank_services', 0) }}">
+                {% if errors.get('bank_services') %}<div class="error">{{ errors.get('bank_services') }}</div>{% endif %}
+            </label>
+            <label>Форма
+                <input type="number" name="uniform" step="any" value="{{ data.get('uniform', 0) }}">
+                {% if errors.get('uniform') %}<div class="error">{{ errors.get('uniform') }}</div>{% endif %}
+            </label>
+            <label>Фискальник
+                <input type="number" name="fiscal_device" step="any" value="{{ data.get('fiscal_device', 0) }}">
+                {% if errors.get('fiscal_device') %}<div class="error">{{ errors.get('fiscal_device') }}</div>{% endif %}
+            </label>
+            <label>НЭО
+                <input type="number" name="neo_service" step="any" value="{{ data.get('neo_service', 0) }}">
+                {% if errors.get('neo_service') %}<div class="error">{{ errors.get('neo_service') }}</div>{% endif %}
+            </label>
+            <label>Мусор, дворник
+                <input type="number" name="garbage_cleaning" step="any" value="{{ data.get('garbage_cleaning', 0) }}">
+                {% if errors.get('garbage_cleaning') %}<div class="error">{{ errors.get('garbage_cleaning') }}</div>{% endif %}
+            </label>
+            <label>Дезинфекция
+                <input type="number" name="disinfection" step="any" value="{{ data.get('disinfection', 0) }}">
+                {% if errors.get('disinfection') %}<div class="error">{{ errors.get('disinfection') }}</div>{% endif %}
+            </label>
+            <label>Рекламные материалы
+                <input type="number" name="promo_materials" step="any" value="{{ data.get('promo_materials', 0) }}">
+                {% if errors.get('promo_materials') %}<div class="error">{{ errors.get('promo_materials') }}</div>{% endif %}
+            </label>
+            <label>Чистый итог инвентаризации (может быть отрицательным)
+                <input type="number" name="inventory_result" step="any" value="{{ data.get('inventory_result', 0) }}">
+                {% if errors.get('inventory_result') %}<div class="error">{{ errors.get('inventory_result') }}</div>{% endif %}
+            </label>
+        </div>
+    </section>
+
+    <div class="actions">
+        <button type="submit">Рассчитать</button>
+    </div>
+</form>
+
+{% if results %}
+<section class="results">
+    <h2>Результаты</h2>
+    <div class="grid cols-2">
+        <div>
+            <h3>Входные данные</h3>
+            <ul>
+                <li>Оборот: <strong>{{ results.inputs.turnover_total | money }}</strong></li>
+                <li>Валовая прибыль: <strong>{{ results.inputs.gross_profit | money }}</strong></li>
+                <li>Оборот агрегатор: <strong>{{ results.inputs.turnover_aggregator | money }}</strong></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Промежуточные показатели</h3>
+            <ul>
+                <li>Маржа: <strong>{{ results.margin | percent }}</strong></li>
+                <li>Затраты: <strong>{{ results.expenses | money }}</strong></li>
+                <li>Прибыль до налогов: <strong>{{ results.profit_before_tax | money }}</strong></li>
+                <li>Рентабельность: <strong>{{ results.profitability | percent }}</strong></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Налоговая база</h3>
+            <ul>
+                <li>Налогооблагаемая прибыль: <strong>{{ results.taxable_profit | money }}</strong></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Налоги</h3>
+            <ul>
+                <li>Налог АУСН: <strong>{{ results.ausn_tax | money }}</strong></li>
+                <li>НДФЛ (13% от белого ФОТ): <strong>{{ results.ndfl_tax | money }}</strong></li>
+                <li>Фиксированный страховой взнос: <strong>{{ results.derived.fixed_insurance | money }}</strong></li>
+                <li>Суммарные налоги: <strong>{{ results.total_tax | money }}</strong></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Налоговая нагрузка</h3>
+            <ul>
+                <li>От оборота: <strong>{{ results.tax_burden_vs_turnover | percent }}</strong></li>
+                <li>От прибыли: <strong>{% if results.tax_burden_vs_profit is not none %}{{ results.tax_burden_vs_profit | percent }}{% else %}Нельзя посчитать при нулевой/отрицательной прибыли{% endif %}</strong></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Производные величины</h3>
+            <ul>
+                <li>Роялти (4%): <strong>{{ results.derived.royalty | money }}</strong></li>
+                <li>Белый ФОТ: <strong>{{ results.derived.white_payroll | money }}</strong></li>
+                <li>Комиссия агрегаторов (35%): <strong>{{ results.derived.aggregator_commission | money }}</strong></li>
+                <li>Эквайринг: <strong>{{ results.derived.acquiring | money }}</strong></li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endif %}
+{% endblock %}
