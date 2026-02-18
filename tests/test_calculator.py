@@ -56,19 +56,19 @@ def test_full_calculation_normal_case():
     assert approx(res.derived.acquiring, 7_600.0)
 
     # Intermediates
-    assert approx(res.expenses, 479_500.0)
-    assert approx(res.profit_before_tax, -179_500.0)
+    assert approx(res.expenses, 476_841.6666666667)
+    assert approx(res.profit_before_tax, -176_841.6666666667)
     assert approx(res.margin or 0, 0.3)
-    assert approx(res.profitability or -0.1795, -0.1795)
+    assert approx(res.profitability or -0.17684166666666667, -0.17684166666666667)
 
     # Tax base and taxes
-    assert approx(res.taxable_profit, -45_500.0)
+    assert approx(res.taxable_profit, -42_841.666666666664)
     assert approx(res.ausn_tax, 30_000.0)
     assert approx(res.ndfl_tax, 8_580.0)
-    assert approx(res.total_tax, 41_480.0)
+    assert approx(res.total_tax, 38_821.666666666664)
 
     # Burden
-    assert approx(res.tax_burden_vs_turnover or 0, 0.04148)
+    assert approx(res.tax_burden_vs_turnover or 0, 0.03882166666666666)
     assert res.tax_burden_vs_profit is None
 
 
@@ -108,10 +108,10 @@ def test_zero_turnover_edge_cases():
     assert res.margin is None
     assert res.profitability is None
     # Taxable profit = GP - fixed_insurance (в формуле налоговой базы он вычитается)
-    assert approx(res.taxable_profit, 7_100.0)
-    # AUSN = max(7100*20%, 0) = 1 420
-    assert approx(res.ausn_tax, 1_420.0)
+    assert approx(res.taxable_profit, 9758.333333333332)
+    # AUSN = max(9758.33*20%, 0) = 1 951.6666...
+    assert approx(res.ausn_tax, 1951.6666666666665)
     # Total tax = AUSN + NDFL (0) + fixed_insurance
-    assert approx(res.total_tax, 1_420.0 + 0.0 + FIXED_INSURANCE_RUB)
+    assert approx(res.total_tax, 1951.6666666666665 + 0.0 + FIXED_INSURANCE_RUB)
     # No turnover -> burden vs turnover is None
     assert res.tax_burden_vs_turnover is None

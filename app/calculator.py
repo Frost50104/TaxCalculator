@@ -8,8 +8,10 @@ from __future__ import annotations
 from dataclasses import dataclass
 from typing import Optional, Dict, Any
 
-
-FIXED_INSURANCE_RUB = 2900.0
+# Annual and monthly fixed insurance contributions
+# Business rule update: 2900 RUB per year -> use monthly share
+ANNUAL_FIXED_INSURANCE_RUB = 2900.0
+FIXED_INSURANCE_RUB = ANNUAL_FIXED_INSURANCE_RUB / 12.0
 
 
 @dataclass(frozen=True)

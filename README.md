@@ -52,7 +52,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --workers 4
 - Роялти: royalty = T * 0.04
 - Белый ФОТ: white_payroll = white_payroll_override > 0 ? override : payroll_total * 0.33
 - Комиссия агрегаторов: aggregator_commission = turnover_aggregator * 0.35
-- Фиксированный страховой взнос: fixed_insurance = 2900
+- Фиксированный страховой взнос: fixed_insurance = 2900 в год (≈ 241.67 в месяц)
 - Эквайринг: acquiring = (T − turnover_aggregator) * 0.01 * 0.95
 
 Затраты (expenses): сумма всех расходов согласно ТЗ (включая производные: royalty, aggregator_commission, fixed_insurance, acquiring).
@@ -131,9 +131,9 @@ pytest -q
 
 Ожидаемые ключевые результаты (сверены тестами):
 - royalty = 40 000; white_payroll = 66 000; aggregator_commission = 70 000; acquiring = 7 600
-- expenses = 479 500; profit_before_tax = −179 500
-- taxable_profit = −45 500; ausn_tax = 30 000; ndfl_tax = 8 580; total_tax = 41 480
-- tax_burden_vs_turnover ≈ 4.148%; tax_burden_vs_profit — не рассчитывается (убыток)
+- expenses ≈ 476 841.67; profit_before_tax ≈ −176 841.67
+- taxable_profit ≈ −42 841.67; ausn_tax = 30 000; ndfl_tax = 8 580; total_tax ≈ 38 821.67
+- tax_burden_vs_turnover ≈ 3.882%; tax_burden_vs_profit — не рассчитывается (убыток)
 
 ## Примечание о stateless
 
